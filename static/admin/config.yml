@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: xcorail/gatsby-starter-netlify-cms
   branch: master
+
+publish_mode: editorial_workflow
 
 media_folder: static/img
 public_folder: /img

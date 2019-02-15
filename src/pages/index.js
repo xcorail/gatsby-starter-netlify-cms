@@ -2,8 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 import Layout from '../components/Layout'
+import PostPreview from '../components/PostPreview'
 
 export default class IndexPage extends React.Component {
+
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
@@ -17,39 +19,8 @@ export default class IndexPage extends React.Component {
             </div>
             {posts
               .map(({ node: post }) => { 
-                const tags = post.frontmatter.tags
                 return (
-                <div
-                  className="content"
-                  style={{ border: '1px solid #333', padding: '2em 4em' }}
-                  key={post.id}
-                >
-                  <p>
-                    <Link className="has-text-primary" to={post.fields.slug}>
-                      {post.frontmatter.title}
-                    </Link>
-                    <span> &bull; </span>
-                    <small>{post.frontmatter.date}</small>
-                  </p>
-                  <p>
-                    {post.excerpt}
-                    <br />
-                    <br />
-                    <Link className="button is-small" to={post.fields.slug}>
-                      Keep Reading →
-                    </Link>
-                    <br />
-                    <br />
-                    {tags ? tags.map((tag, i) => {
-                      const URLtag = tag.replace(' ', '-')
-                      console.log(URLtag);
-                      return (
-                        <span> 
-                            <Link to={`/tags/${URLtag}`} >{tag}</Link>{i < tags.length - 1 ? ', ' : null}
-                        </span> 
-                      ) }) : null}
-                  </p>
-                </div>
+                  <PostPreview post={post} key={post.id} />
               )})}
           </div>
         </section>

@@ -6,4 +6,4 @@ description: Another test of the Git workflow
 tags:
   - people
 ---
-This is a test
+This is a test of the Git bi-directional workflow

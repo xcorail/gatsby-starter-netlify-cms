@@ -1,5 +1,4 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 
 export default class PostPreview extends React.Component {
@@ -7,16 +6,20 @@ export default class PostPreview extends React.Component {
   render() {
     const post = this.props.post
     const tags = post.frontmatter.tags
+    const author = post.frontmatter.author.replace(' ', '-').toLowerCase()
 
     return (
       <div
         className="content"
         style={{ border: '1px solid #333', padding: '2em 4em' }}
-        // key={post.id}
       >
         <p>
           <Link className="has-text-primary" to={post.fields.slug}>
             {post.frontmatter.title}
+          </Link>
+          <span> &bull; </span>
+          <Link to={`/authors/${author}`}>
+            {post.frontmatter.author}
           </Link>
           <span> &bull; </span>
           <small>{post.frontmatter.date}</small>
@@ -30,7 +33,7 @@ export default class PostPreview extends React.Component {
           </Link>
           <br />
           <br />
-          {tags ? tags.map((tag, i) => {
+          Tags: {tags ? tags.map((tag, i) => {
             const URLtag = tag.replace(' ', '-')
             return (
               <span key={i}> 
